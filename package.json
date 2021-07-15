@@ -28,6 +28,12 @@
           "method": "post",
           "src": "/todos/update"
         }
+      },
+      {
+        "/podcasts": {
+          "method": "post",
+          "src": "/podcasts/fetch"
+        }
       }
     ],
     "tables": [
@@ -47,6 +53,10 @@
     "@architect/functions": "^3.13.9",
     "@architect/sandbox": "^3.4.0",
     "@begin/data": "^2.0.1",
+    "lodash.get": "^4.4.2",
+    "node-fetch": "^2.6.1",
+    "react-native-rss-parser": "^1.5.1",
+    "striptags": "^3.2.0",
     "tiny-json-http": "^7.3.0"
   }
 }
