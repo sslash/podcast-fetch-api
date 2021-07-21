@@ -25,7 +25,7 @@ const timeStringifier = (time) => {
 // creates string like:
 // `1 hour, 10 minute`
 // `55 minute`
-const formatDuration = (duration) => {
+const formatDuration = (duration = '') => {
     if (duration.includes(':')) {
         return duration
     }

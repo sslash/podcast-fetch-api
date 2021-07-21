@@ -5,21 +5,8 @@ const { fetchChannel } = require('./fetchChannel')
 exports.handler = async function read(req) {
   let args = arc.http.helpers.bodyParser(req)
   req.pathParameters
-  console.log('ARGS ', args.url)
 
   const podcast = await fetchChannel(args.url)
-
-  let pages = await data.get({
-    table: 'todos',
-    limit: 25
-  })
-  
-  // let todos = []
-  // for await (let todo of pages) {
-  //   todos.push(todo)
-  // }
-
-  // todos.sort((a, b) => a.created - b.created)
 
   return {
     statusCode: 201,
