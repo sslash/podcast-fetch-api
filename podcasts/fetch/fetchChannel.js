@@ -2,11 +2,11 @@ const get = require("lodash.get");
 const { feedXmlToEpisode } = require("./mappers");
 const { fetchAndParse, isValidEpisode } = require("./utils");
 
-const fetchChannel = async (uri) => {
+const fetchChannel = async (uri, limit) => {
   try {
-    console.log(`fetchChannel() ${uri}`);
+    console.log(`fetchChannel() ${uri}, limit: ${limit}`);
     const parsed = await fetchAndParse(uri);
-    const episodes = parsed.items
+    const episodes = (limit ? parsed.items.slice(0, limit) : parsed.items)
       .map((epi) => feedXmlToEpisode(parsed, epi, uri))
       .filter(({ data: { imageUri, title, episodeUri }, channelTitle }) =>
         isValidEpisode({ imageUri, title, channelTitle, episodeUri })

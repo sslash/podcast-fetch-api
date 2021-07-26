@@ -4,9 +4,17 @@ const { fetchChannel } = require("./fetchChannel");
 
 exports.handler = async function read(req) {
   let args = arc.http.helpers.bodyParser(req)
-  req.pathParameters
+  const url = args.url
+  const limit = args.limit
 
-  const podcast = await fetchChannel(args.url)
+  const podcast = await fetchChannel(url, limit)
+  let body = ""
+  try {
+    body = JSON.stringify(podcast)
+  } catch (error) {
+    console.log('JSON stringify failed')
+    console.error(error)
+  }
 
   return {
     statusCode: 201,
@@ -15,7 +23,7 @@ exports.handler = async function read(req) {
       "cache-control":
         "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
     },
-    body: JSON.stringify(podcast),
+    body
   };
 };
 
