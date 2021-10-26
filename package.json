@@ -6,33 +6,21 @@
     "app": "crud-app",
     "http": [
       {
-        "/todos": {
-          "method": "post",
-          "src": "/todos/create"
-        }
-      },
-      {
-        "/todos": {
-          "method": "get",
-          "src": "/todos/read"
-        }
-      },
-      {
-        "/todos/delete": {
-          "method": "post",
-          "src": "/todos/delete"
-        }
-      },
-      {
-        "/todos/:id": {
-          "method": "post",
-          "src": "/todos/update"
-        }
-      },
-      {
         "/podcasts": {
           "method": "post",
-          "src": "/podcasts/fetch"
+          "src": "/podcasts/fetch-xml"
+        }
+      },
+      {
+        "/podcasts/insert": {
+          "method": "post",
+          "src": "/podcasts/insert"
+        }
+      },
+      {
+        "/podcasts/get-head": {
+          "method": "get",
+          "src": "/podcasts/get"
         }
       }
     ],
@@ -51,7 +39,7 @@
   },
   "dependencies": {
     "@architect/functions": "^3.13.9",
-    "@architect/sandbox": "^3.4.0",
+    "@architect/sandbox": "^3.7.4",
     "@begin/data": "^2.0.1",
     "lodash.get": "^4.4.2",
     "node-fetch": "^2.6.1",

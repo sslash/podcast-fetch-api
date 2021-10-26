@@ -1,19 +1,18 @@
 let arc = require("@architect/functions");
-const data = require("@begin/data");
 const { fetchChannel } = require("./fetchChannel");
 
 exports.handler = async function read(req) {
-  let args = arc.http.helpers.bodyParser(req)
-  const url = args.url
-  const limit = args.limit
+  let args = arc.http.helpers.bodyParser(req);
+  const url = args.url;
+  const limit = args.limit;
 
-  const podcast = await fetchChannel(url, limit)
-  let body = ""
+  const podcast = await fetchChannel(url, limit);
+  let body = "";
   try {
-    body = JSON.stringify(podcast)
+    body = JSON.stringify(podcast);
   } catch (error) {
-    console.log('JSON stringify failed')
-    console.error(error)
+    console.log("JSON stringify failed");
+    console.error(error);
   }
 
   return {
@@ -23,7 +22,7 @@ exports.handler = async function read(req) {
       "cache-control":
         "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
     },
-    body
+    body,
   };
 };
 
