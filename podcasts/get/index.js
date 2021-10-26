@@ -12,13 +12,11 @@ const log = (...args) => {
 // gets podcast meta + the latest 10 episodes
 exports.handler = async function read(req) {
   let url = req.queryStringParameters.url;
-
   const key = createKey(url);
-  log(`url: '${url}' key: '${key}'`);
 
   const res = await data.get({ table: keys.CHANNEL_KEY, key });
+  log(`Get podcast head: '${url}', key: '${key}', existed? ${!!res} `);
 
-  log("Existed?", !!res);
   let body = "";
   try {
     body = JSON.stringify(res || "");

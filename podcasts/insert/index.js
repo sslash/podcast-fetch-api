@@ -14,7 +14,7 @@ exports.handler = async function create(req) {
   const { uri, channel } = podcastChannel;
 
   const key = createKey(uri);
-  log("Will insert key", key);
+  log(`Will insert podcast with title: '${channel.meta.title}', episodes: ${channel.episodes.length}`);
   const existing = await data.get({ table: keys.CHANNEL_KEY, key });
 
   let newEntry;
