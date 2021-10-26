@@ -1,13 +1,14 @@
 let arc = require("@architect/functions");
 const data = require("@begin/data");
-const createKey = require("../utils/createKey");
-const keys = require("../utils/keys");
+const createKey = require("@architect/shared/createKey");
+const keys = require("@architect/shared/keys");
 
 const log = (...args) => {
   if (process.env.NODE_ENV !== "production") {
     console.log(...args);
   }
 };
+
 // gets podcast meta + the latest 10 episodes
 exports.handler = async function read(req) {
   let url = req.queryStringParameters.url;

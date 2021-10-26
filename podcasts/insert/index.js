@@ -1,7 +1,7 @@
 let arc = require("@architect/functions");
 let data = require("@begin/data");
-let createKey = require("../utils/createKey");
-const keys = require("../utils/keys");
+const createKey = require("@architect/shared/createKey");
+const keys = require("@architect/shared/keys");
 
 const log = (...args) => {
   if (process.env.NODE_ENV !== "production") {
