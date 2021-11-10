@@ -9,6 +9,7 @@ const log = (...args) => {
   }
 };
 
+// uses dynamo to save podcasts
 // gets podcast meta + the latest 10 episodes
 exports.handler = async function read(req) {
   let url = req.queryStringParameters.url;

@@ -12,6 +12,12 @@
         }
       },
       {
+        "/podcasts/get-episode-details": {
+          "method": "get",
+          "src": "/podcasts/get-episode-details"
+        }
+      },
+      {
         "/podcasts/insert": {
           "method": "post",
           "src": "/podcasts/insert"

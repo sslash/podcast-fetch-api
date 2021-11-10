@@ -1,15 +1,27 @@
 let arc = require("@architect/functions");
-const { fetchChannel } = require("@architect/shared/fetchChannel");
+const get = require("lodash.get");
+const { mapEpisodes } = require("@architect/shared/fetchChannel");
+const { fetchAndParse } = require("@architect/shared/utils");
 
 exports.handler = async function read(req) {
-  let args = arc.http.helpers.bodyParser(req);
-  const url = args.url;
-  const limit = args.limit;
+  const { uri, title, channelUri } = req.queryStringParameters
+  
+  console.log('Get-episode-details ', uri, title, channelUri)
 
-  const podcast = await fetchChannel(url, limit);
+  const parsed = await fetchAndParse(channelUri);
+  let epi = parsed.items.find((epi) => {
+    let epiUrl = get(epi, "enclosures[0].url")
+
+    return epiUrl === uri || epi.title === title
+  })
+
+  
+
+  let mappedEpisodes = epi ? mapEpisodes([epi], undefined, parsed, channelUri) : []
+
   let body = "";
   try {
-    body = JSON.stringify(podcast);
+    body = JSON.stringify(mappedEpisodes[0] || null);
   } catch (error) {
     console.log("JSON stringify failed");
     console.error(error);
